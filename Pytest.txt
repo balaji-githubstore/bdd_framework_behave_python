@@ -1,0 +1,53 @@
+
+$ pytest
+$ pytest -q test_sysexit.py
+$ pytest .\tests\demo_test.py
+$ pytest -k TestClassDemoInstance -q
+
+include class and exclude method
+$ pytest -k "TestLogin and not test_two"
+
+Run tests in a module
+pytest test_mod.py
+
+Run tests in a directory
+pytest testing/
+
+
+To run a specific test within a module:
+pytest test_mod.py::test_func
+
+pytest test_mod.py::TestClass::test_method
+
+Run tests by marker expressions
+pytest -m slow
+
+
+
+run using marks 
+1. Create method with mark
+@pytest.mark.ui
+    @pytest.mark.low
+    def test_title(self):
+        assert self.driver.title == 'Google'
+
+2. create pytest.ini file and register mark 
+
+[pytest]
+markers =
+    slow: marks tests as slow (deselect with '-m "not slow"')
+    serial
+    ui: runs only UI related test
+    smoke: runs smoke test
+    low
+
+3. $ pytest -m ui
+
+
+HTML REPORT
+
+$ pytest --html=report.html
+
+
+
+

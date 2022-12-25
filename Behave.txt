@@ -1,0 +1,114 @@
+behave
+
+1. features
+	login.feature
+	environment.py
+	steps
+		login_steps.py
+
+
+
+2. Given a sample text loaded into the frobulator
+     """
+     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+     eiusmod tempor incididunt ut labore et dolore magna aliqua.
+     """
+ --> 
+	1. comes to step defintion context argument
+	2. to get the data - context.text 
+
+
+
+3.   Given a set of specific users
+     | name      | department  |
+     | Barry     | Beer Cans   |
+     | Pudey     | Silly Walks |
+     | Two-Lumps | Silly Walks |
+
+--> 1. to acess table 
+@given('a set of specific users')
+def step_impl(context):
+    for row in context.table:
+        model.add_user(name=row['name'], department=row['department'])
+
+
+4. TO call another step in step defn
+
+If you find you’d like your step implementation to invoke another step you may do so with the Context method execute_steps().
+
+This function allows you to, for example:
+
+@when('I do the same thing as before')
+def step_impl(context):
+    context.execute_steps('''
+        when I press the big red button
+         and I duck
+    ''')
+
+5. Step parameters
+Then the result page will include "success"
+
+@then('the result page will include "{text}"')
+def step_impl(context, text):
+    if text not in context.response:
+        fail('%r not in %r' % (text, context.response))
+
+
+
+6.context -> to share data between feature, scenario
+There’s also some values added to the context by behave itself:
+
+table
+
+text
+
+failed
+
+7.Environmental Controls
+
+before_step(context, step), after_step(context, step)
+before_scenario(context, scenario), after_scenario(context, scenario)
+before_feature(context, feature), after_feature(context, feature)
+before_tag(context, tag), after_tag(context, tag)
+before_all(context), after_all(context)
+
+8. tags - @slow
+
+behave --tags=slow 
+
+except @slow
+behave --tags=-slow
+behave --tags ~@fixme --tags ~@buggy.
+
+Tag selection on the command-line may be combined:
+
+--tags=wip,slow
+This will select all the cases tagged either “wip” or “slow”.
+--tags=wip --tags=slow
+This will select all the cases tagged both “wip” and “slow”.
+
+
+9. if only some of the features required a browser and web server then you could tag them @browser:
+
+def before_feature(context, feature):
+    model.init(environment='test')
+    if 'browser' in feature.tags:
+        use_fixture(wsgi_server, context)
+        use_fixture(selenium_browser_chrome, context)
+
+
+
+10. Fixtures simplify the setup/cleanup tasks that are often needed during test execution.
+
+# -- FILE: behave4my_project/fixtures.py  (or in: features/environment.py)
+from behave import fixture
+from somewhere.browser.firefox import FirefoxBrowser
+
+# -- FIXTURE: Use generator-function
+@fixture
+def browser_firefox(context, timeout=30, **kwargs):
+    # -- SETUP-FIXTURE PART:
+    context.browser = FirefoxBrowser(timeout, **kwargs)
+    yield context.browser
+    # -- CLEANUP-FIXTURE PART:
+    context.browser.shutdown()
