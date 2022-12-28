@@ -50,4 +50,50 @@ $ pytest --html=report.html
 
 
 
+4. to log all command output to log file
+python test_out.py >myoutput.log
+pytest >myoutput.log
 
+5. To add logger
+
+1. Add below details in pytest.ini
+[pytest]
+markers =
+    hookwrapper
+
+log_file=log1.log
+log_file_level=INFO
+log_file_format = %(asctime)s %(levelname)s %(message)s
+log_file_date_format = %Y-%m-%d %H:%M:%S
+
+2. In class file
+import pytest
+import logging
+from selenium import webdriver
+
+"""Setup and Teardown & 2 test method in one class"""
+"""follow - demo1, demo2, demo3, demo4"""
+
+log = logging.getLogger()
+
+
+@pytest.mark.uig
+class TestLogin:
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        self.driver = webdriver.Chrome()
+        self.driver.maximize_window()
+        self.driver.implicitly_wait(10)
+        self.driver.get("http://google.com")
+        log.info("Google App Lanuched ")
+        yield
+        self.driver.quit()
+        log.info("App Closed ")
+
+    def test_title(self):
+        log.info("Title is " + self.driver.title)
+        assert self.driver.title == 'Google'
+
+    def test_url(self):
+        log.info("Title is " + self.driver.current_url)
+        assert 'https://www.google.com' in self.driver.current_url

@@ -1,0 +1,54 @@
+Feature: Login # tests/features/login.feature:1
+  In order to manage the patients records
+  As a admin
+  I would like to access the OpenEMR dashboard
+  @invalid
+  Scenario: Invalid Login                                                         # tests/features/login.feature:15
+    Given I have browser with openemr application                                 # None
+    When I enter username as "admin"                                              # None
+    And I enter password as "pass123"                                             # None
+    And I click on login                                                          # None
+    Then I should not get access to dashboard with "Invalid username or password" # None
+
+  @valid
+  Scenario Outline: Valid Login -- @1.1                  # tests/features/login.feature:32
+    Given I have browser with openemr application        # None
+    When I enter username as "admin"                     # None
+    And I enter password as "pass"                       # None
+    And I click on login                                 # None
+    Then I should get access to dashboard with "OpenEMR" # None
+
+  @valid
+  Scenario Outline: Valid Login -- @1.2                  # tests/features/login.feature:33
+    Given I have browser with openemr application        # None
+    When I enter username as "accountant"                # None
+    And I enter password as "accountant"                 # None
+    And I click on login                                 # None
+    Then I should get access to dashboard with "OpenEMR" # None
+
+@patient
+Feature: Patient # tests/features/patient.feature:2
+  In order to manage the patients records
+  As a admin
+  I would like to access the OpenEMR dashboard
+  Scenario Outline: Add Patient -- @1.1                                                  # tests/features/patient.feature:27
+    Given I have browser with openemr application                                        # tests/features/steps/login_steps.py:11
+    When I enter username as "admin"                                                     # tests/features/steps/login_steps.py:20
+    And I enter password as "pass"                                                       # tests/features/steps/login_steps.py:26
+    And I click on login                                                                 # tests/features/steps/login_steps.py:31
+    And I click on Patient menu                                                          # tests/features/steps/patient_steps.py:10
+    And I click on New search menu                                                       # tests/features/steps/patient_steps.py:15
+    And I fill the form                                                                  # tests/features/steps/patient_steps.py:20
+      | firstname | lastname | dob        | gender | licencenumber |
+      | John      | Wick     | 2022-05-20 | Male   | E120          |
+    And I click on create new patient                                                    # tests/features/steps/patient_steps.py:31
+    And I click on Confirm Create New Patient                                            # tests/features/steps/patient_steps.py:37
+    And I handle the alert                                                               # tests/features/steps/patient_steps.py:44
+    And I handle the happybirthday pop if available                                      # tests/features/steps/patient_steps.py:52
+    Then alert message should contains "Toba"                                            # tests/features/steps/patient_steps.py:57
+    And I should see the added patient details as "Medical Record Dashboard - John Wick" # tests/features/steps/patient_steps.py:63
+
+1 feature passed, 0 failed, 1 skipped
+1 scenario passed, 0 failed, 3 skipped
+13 steps passed, 0 failed, 15 skipped, 0 undefined
+Took 0m18.993s

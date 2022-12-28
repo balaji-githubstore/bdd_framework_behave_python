@@ -126,3 +126,6 @@ cmd line:
 behave -f help
 behave -f html
 behave -f html -o behave-report.html
+
+12. to log all command output to log file
+behave >myoutput.log
