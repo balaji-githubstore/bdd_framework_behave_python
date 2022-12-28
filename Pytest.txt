@@ -81,6 +81,10 @@ class TestLogin:
         log.info("Title is " + self.driver.current_url)
         assert 'https://www.google.com' in self.driver.current_url
 
+6 parallel run 
+pip install pytest-xdist
+
+pytest -n 2 -m uig
 
 Demo:
 1. run pytest, pytest one file, pytest one class, pytest class::method, pytest mark
