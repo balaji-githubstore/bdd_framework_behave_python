@@ -1,44 +1,44 @@
-<testsuite name="login.Login" tests="3" errors="0" failures="0" skipped="0" time="28.643089" timestamp="2022-12-25T21:57:44.870727" hostname="DESKTOP-R6BD6UD"><testcase classname="login.Login" name="Invalid Login" status="passed" time="7.57223"><system-out>
+<testsuite name="login.Login" tests="3" errors="0" failures="0" skipped="3" time="0.0" timestamp="2022-12-27T23:12:23.466747" hostname="DESKTOP-R6BD6UD"><testcase classname="login.Login" name="Invalid Login" status="skipped" time="0"><skipped /><system-out>
 <![CDATA[
 @scenario.begin
 
   @invalid
   Scenario: Invalid Login
-    Given I have browser with openemr application ... passed in 5.183s
-    When I enter username as "admin" ... passed in 0.134s
-    And I enter password as "pass123" ... passed in 0.200s
-    And I click on login ... passed in 2.039s
-    Then I should not get access to dashboard with "Invalid username or password" ... passed in 0.016s
+    Given I have browser with openemr application ... skipped in 0.000s
+    When I enter username as "admin" ... skipped in 0.000s
+    And I enter password as "pass123" ... skipped in 0.000s
+    And I click on login ... skipped in 0.000s
+    Then I should not get access to dashboard with "Invalid username or password" ... skipped in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
 ]]>
-</system-out></testcase><testcase classname="login.Login" name="Valid Login -- @1.1 " status="passed" time="10.539641"><system-out>
+</system-out></testcase><testcase classname="login.Login" name="Valid Login -- @1.1 " status="skipped" time="0"><skipped /><system-out>
 <![CDATA[
 @scenario.begin
 
   @valid
   Scenario Outline: Valid Login -- @1.1 
-    Given I have browser with openemr application ... passed in 5.328s
-    When I enter username as "admin" ... passed in 0.110s
-    And I enter password as "pass" ... passed in 0.092s
-    And I click on login ... passed in 4.978s
-    Then I should get access to dashboard with "OpenEMR" ... passed in 0.032s
+    Given I have browser with openemr application ... skipped in 0.000s
+    When I enter username as "admin" ... skipped in 0.000s
+    And I enter password as "pass" ... skipped in 0.000s
+    And I click on login ... skipped in 0.000s
+    Then I should get access to dashboard with "OpenEMR" ... skipped in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------
 ]]>
-</system-out></testcase><testcase classname="login.Login" name="Valid Login -- @1.2 " status="passed" time="10.531218"><system-out>
+</system-out></testcase><testcase classname="login.Login" name="Valid Login -- @1.2 " status="skipped" time="0"><skipped /><system-out>
 <![CDATA[
 @scenario.begin
 
   @valid
   Scenario Outline: Valid Login -- @1.2 
-    Given I have browser with openemr application ... passed in 5.084s
-    When I enter username as "accountant" ... passed in 0.125s
-    And I enter password as "accountant" ... passed in 0.191s
-    And I click on login ... passed in 5.108s
-    Then I should get access to dashboard with "OpenEMR" ... passed in 0.024s
+    Given I have browser with openemr application ... skipped in 0.000s
+    When I enter username as "accountant" ... skipped in 0.000s
+    And I enter password as "accountant" ... skipped in 0.000s
+    And I click on login ... skipped in 0.000s
+    Then I should get access to dashboard with "OpenEMR" ... skipped in 0.000s
 
 @scenario.end
 --------------------------------------------------------------------------------

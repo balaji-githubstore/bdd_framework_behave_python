@@ -1,35 +1,36 @@
-<testsuite name="patient.Patient" tests="1" errors="0" failures="0" skipped="0" time="20.043119" timestamp="2022-12-25T22:00:19.477372" hostname="DESKTOP-R6BD6UD"><testcase classname="patient.Patient" name="Add Patient -- @1.1 " status="passed" time="20.043119"><system-out>
+<testsuite name="patient.Patient" tests="1" errors="0" failures="0" skipped="0" time="18.395239" timestamp="2022-12-27T23:12:43.982320" hostname="DESKTOP-R6BD6UD"><testcase classname="patient.Patient" name="Add Patient -- @1.1 " status="passed" time="18.395239"><system-out>
 <![CDATA[
 @scenario.begin
   Scenario Outline: Add Patient -- @1.1 
-    Given I have browser with openemr application ... passed in 6.560s
-    When I enter username as "admin" ... passed in 0.085s
-    And I enter password as "pass" ... passed in 0.162s
-    And I click on login ... passed in 5.077s
-    And I click on Patient menu ... passed in 0.242s
+    Given I have browser with openemr application ... passed in 5.243s
+    When I enter username as "admin" ... passed in 0.105s
+    And I enter password as "pass" ... passed in 0.105s
+    And I click on login ... passed in 5.033s
+    And I click on Patient menu ... passed in 0.259s
     And I click on New search menu ... passed in 0.280s
-    And I fill the form ... passed in 2.261s
+    And I fill the form ... passed in 2.123s
       | firstname | lastname | dob        | gender | licencenumber |
       | John      | Wick     | 2022-05-20 | Male   | E120          |
-    And I click on create new patient ... passed in 0.243s
-    And I click on Confirm Create New Patient ... passed in 0.934s
-    And I handle the alert ... passed in 4.103s
+    And I click on create new patient ... passed in 0.187s
+    And I click on Confirm Create New Patient ... passed in 0.736s
+    And I handle the alert ... passed in 4.221s
     And I handle the happybirthday pop if available ... passed in 0.000s
     Then alert message should contains "Toba" ... passed in 0.000s
-    And I should see the added patient details as "Medical Record Dashboard - John Wick" ... passed in 0.096s
+    And I should see the added patient details as "Medical Record Dashboard - John Wick" ... passed in 0.104s
 
 @scenario.end
 --------------------------------------------------------------------------------
 
 Captured stdout:
+<selenium.webdriver.chrome.webdriver.WebDriver (session="309df7ebfea0ca849bb0cf19c74f870d")>
 New Due Clinical Reminders
 
 Assessment: Tobacco
 
 (See the Clinical Reminders widget for more details)
 hbd
-<behave.runner.Context object at 0x00000198ED42FEB0>
-<behave.runner.Context object at 0x00000198ED42FEB0>
+<behave.runner.Context object at 0x0000019C96A463E0>
+<behave.runner.Context object at 0x0000019C96A463E0>
 
 ]]>
 </system-out></testcase></testsuite>

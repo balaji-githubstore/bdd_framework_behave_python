@@ -112,3 +112,17 @@ def browser_firefox(context, timeout=30, **kwargs):
     yield context.browser
     # -- CLEANUP-FIXTURE PART:
     context.browser.shutdown()
+
+
+ 11. html report
+ pip install behave-html-formatter
+
+ # -- FILE: behave.ini
+# Define ALIAS for HtmlFormatter.
+[behave.formatters]
+html = behave_html_formatter:HTMLFormatter
+
+cmd line:
+behave -f help
+behave -f html
+behave -f html -o behave-report.html
