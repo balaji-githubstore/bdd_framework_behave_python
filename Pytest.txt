@@ -20,16 +20,10 @@ pytest test_mod.py::test_func
 pytest test_mod.py::TestClass::test_method
 
 Run tests by marker expressions
+
+@pytest.mark.ui
 pytest -m slow
 
-
-
-run using marks 
-1. Create method with mark
-@pytest.mark.ui
-    @pytest.mark.low
-    def test_title(self):
-        assert self.driver.title == 'Google'
 
 2. create pytest.ini file and register mark 
 
@@ -41,9 +35,9 @@ markers =
     smoke: runs smoke test
     low
 
-3. $ pytest -m ui
-
-
+    $ pytest -m ui
+3. Html
+pip install pytest-html
 HTML REPORT
 
 $ pytest --html=report.html
@@ -57,10 +51,6 @@ pytest >myoutput.log
 5. To add logger
 
 1. Add below details in pytest.ini
-[pytest]
-markers =
-    hookwrapper
-
 log_file=log1.log
 log_file_level=INFO
 log_file_format = %(asctime)s %(levelname)s %(message)s
@@ -79,21 +69,20 @@ log = logging.getLogger()
 
 @pytest.mark.uig
 class TestLogin:
-    @pytest.fixture(autouse=True)
-    def setup(self):
-        self.driver = webdriver.Chrome()
-        self.driver.maximize_window()
-        self.driver.implicitly_wait(10)
-        self.driver.get("http://google.com")
-        log.info("Google App Lanuched ")
-        yield
-        self.driver.quit()
-        log.info("App Closed ")
-
     def test_title(self):
-        log.info("Title is " + self.driver.title)
-        assert self.driver.title == 'Google'
+        try:
+            LOGGER.info("Title is " + self.driver.title)
+            assert self.driver.title == 'Google1'
+        except BaseException as error:
+            LOGGER.error("Title is " + self.driver.title)
+            assertpy.fail('An exception occurred: {}'.format(error))
 
     def test_url(self):
         log.info("Title is " + self.driver.current_url)
         assert 'https://www.google.com' in self.driver.current_url
+
+
+Demo:
+1. run pytest, pytest one file, pytest one class, pytest class::method, pytest mark
+2. pytest html
+3. logging
